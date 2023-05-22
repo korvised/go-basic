@@ -1,0 +1,1606 @@
+{
+  "collection": {
+    "info": {
+      "_postman_id": "8bb94ba9-61cd-4657-944a-5e39719ec82f",
+      "name": "Risk-Register",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "updatedAt": "2021-10-24T02:48:30.000Z",
+      "uid": "10085483-8bb94ba9-61cd-4657-944a-5e39719ec82f"
+    },
+    "item": [
+      {
+        "name": "Authentication",
+        "item": [
+          {
+            "name": "User Login",
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "id": "8bc4f333-1978-4fb0-be8d-3173ebd25c03",
+                  "exec": [
+                    "pm.environment.set(\"TOKEN\", pm.response.json().token)"
+                  ],
+                  "type": "text/javascript"
+                }
+              }
+            ],
+            "id": "35264fe1-992a-4e8e-a4f9-144c88a96a6b",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"username\": \"admin\",\n    \"password\": \"1234\"\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/auth/login",
+                "host": ["{{URL}}"],
+                "path": ["api", "auth", "login"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-35264fe1-992a-4e8e-a4f9-144c88a96a6b"
+          },
+          {
+            "name": "Get User Detail",
+            "id": "22203ba1-cced-410c-a66c-83195c9f6817",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/auth/me",
+                "host": ["{{URL}}"],
+                "path": ["api", "auth", "me"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-22203ba1-cced-410c-a66c-83195c9f6817"
+          },
+          {
+            "name": "Reset Password",
+            "id": "96be1439-b1a9-4dc4-8753-0857118c856a",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"currentPasssword\": \"123456\",\n    \"newPassword\": \"1234\"\n}",
+                "options": { "raw": { "language": "json" } }
+              },
+              "url": {
+                "raw": "{{URL}}/api/auth/resetpassword",
+                "host": ["{{URL}}"],
+                "path": ["api", "auth", "resetpassword"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-96be1439-b1a9-4dc4-8753-0857118c856a"
+          }
+        ],
+        "id": "cf9202c2-d1c9-4ab9-8d34-56f01fe1c337",
+        "uid": "10085483-cf9202c2-d1c9-4ab9-8d34-56f01fe1c337"
+      },
+      {
+        "name": "Admins",
+        "item": [
+          {
+            "name": "Get All Admins",
+            "id": "c9184289-1fae-49b2-8cc2-4752a5a8033f",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/admins",
+                "host": ["{{URL}}"],
+                "path": ["api", "admins"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-c9184289-1fae-49b2-8cc2-4752a5a8033f"
+          },
+          {
+            "name": "Add Admin",
+            "id": "c77e03e0-ae57-42e6-a259-c412ea71835b",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"admin 2\",\n    \"username\": \"admin2\",\n    \"phone\": \"02099998888\",\n    \"password\": \"1234\"\n}",
+                "options": { "raw": { "language": "json" } }
+              },
+              "url": {
+                "raw": "{{URL}}/api/admins",
+                "host": ["{{URL}}"],
+                "path": ["api", "admins"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-c77e03e0-ae57-42e6-a259-c412ea71835b"
+          },
+          {
+            "name": "Reset Admin password",
+            "id": "326935b3-60ab-476d-ad2a-c9ea09b862bc",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "PUT",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"newPassword\": \"123456\"\n}",
+                "options": { "raw": { "language": "json" } }
+              },
+              "url": {
+                "raw": "{{URL}}/api/admins/resetPassword/1231534646",
+                "host": ["{{URL}}"],
+                "path": ["api", "admins", "resetPassword", "1231534646"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-326935b3-60ab-476d-ad2a-c9ea09b862bc"
+          },
+          {
+            "name": "Delete Admin",
+            "id": "5b56e8e8-d367-4f7a-8ec6-d17d26892fb7",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "{{URL}}/api/admins/5f744888da434524589804a2",
+                "host": ["{{URL}}"],
+                "path": ["api", "admins", "5f744888da434524589804a2"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-5b56e8e8-d367-4f7a-8ec6-d17d26892fb7"
+          }
+        ],
+        "id": "6ccad9c0-bdbb-4108-84e8-2ab7ba871f25",
+        "uid": "10085483-6ccad9c0-bdbb-4108-84e8-2ab7ba871f25"
+      },
+      {
+        "name": "Users",
+        "item": [
+          {
+            "name": "Get All Users",
+            "id": "0607ec8d-9fb5-4497-931d-a96363a0c94d",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/users",
+                "host": ["{{URL}}"],
+                "path": ["api", "users"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-0607ec8d-9fb5-4497-931d-a96363a0c94d"
+          },
+          {
+            "name": "Get Users by Division",
+            "id": "3adf1b0d-9082-4c39-82f3-128f75a2e40c",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/users/division/6166ac219b0ed7223cea0795",
+                "host": ["{{URL}}"],
+                "path": ["api", "users", "division", "6166ac219b0ed7223cea0795"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-3adf1b0d-9082-4c39-82f3-128f75a2e40c"
+          },
+          {
+            "name": "Get Single User",
+            "id": "d1331b32-d127-4c22-9284-d99600f38460",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/users/61663a47c7578644388b22b5",
+                "host": ["{{URL}}"],
+                "path": ["api", "users", "61663a47c7578644388b22b5"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-d1331b32-d127-4c22-9284-d99600f38460"
+          },
+          {
+            "name": "Add Users",
+            "id": "1bb8d44c-5780-4e69-ba58-6f61c500d6ec",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "POST",
+              "header": [],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"ພະແນກ ກວດກາ\",\n    \"username\": \"user3\",\n    \"tel\": \"2022222222\",\n    \"password\": \"1234\",\n    \"branch\": \"6008d46988c23a53e41b5770\",\n    \"department\": \"601e18797270fc088c5328b9\"\n}",
+                "options": { "raw": { "language": "json" } }
+              },
+              "url": {
+                "raw": "{{URL}}/api/users",
+                "host": ["{{URL}}"],
+                "path": ["api", "users"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-1bb8d44c-5780-4e69-ba58-6f61c500d6ec"
+          },
+          {
+            "name": "Update User Detail",
+            "id": "67fad1eb-b057-4c5b-8993-836d5e89aa68",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"fullName\": \"000600\",\n    \"phoneNumber\": \"2099998888\",\n    \"division\": \"6008d46988c23a53e41b5775\"\n}",
+                "options": { "raw": { "language": "json" } }
+              },
+              "url": {
+                "raw": "{{URL}}/api/users/600fe254839f2b503ce7ab46",
+                "host": ["{{URL}}"],
+                "path": ["api", "users", "600fe254839f2b503ce7ab46"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-67fad1eb-b057-4c5b-8993-836d5e89aa68"
+          },
+          {
+            "name": "Reset Password",
+            "id": "1b6e1ab8-8b92-4381-b1fa-28919cdbd9c9",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"newPassword\": \"123456\"\n}",
+                "options": { "raw": { "language": "json" } }
+              },
+              "url": {
+                "raw": "{{URL}}/api/users/resetpassword/5f74274c5e856a0e65ef898b",
+                "host": ["{{URL}}"],
+                "path": [
+                  "api",
+                  "users",
+                  "resetpassword",
+                  "5f74274c5e856a0e65ef898b"
+                ]
+              }
+            },
+            "response": [],
+            "uid": "10085483-1b6e1ab8-8b92-4381-b1fa-28919cdbd9c9"
+          }
+        ],
+        "id": "74f65607-ac6c-4873-84fd-298dff949a0e",
+        "uid": "10085483-74f65607-ac6c-4873-84fd-298dff949a0e"
+      },
+      {
+        "name": "Branches",
+        "item": [
+          {
+            "name": "Get All Branches",
+            "id": "a7cd9c6f-2f92-4b60-ac48-81926d557c13",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/branches",
+                "host": ["{{URL}}"],
+                "path": ["api", "branches"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-a7cd9c6f-2f92-4b60-ac48-81926d557c13"
+          },
+          {
+            "name": "Get Branch By Id",
+            "id": "ea29cab7-6e17-481b-a4ea-a1c3436f1f46",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/branches/6048311f1c276f241454750b",
+                "host": ["{{URL}}"],
+                "path": ["api", "branches", "6048311f1c276f241454750b"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-ea29cab7-6e17-481b-a4ea-a1c3436f1f46"
+          },
+          {
+            "name": "Create Branch",
+            "id": "541f0a2c-5929-4806-ba51-d89dc2d7fa1a",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"code\": \"000222\",\r\n    \"name\": \"test branch\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/branches",
+                "host": ["{{URL}}"],
+                "path": ["api", "branches"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-541f0a2c-5929-4806-ba51-d89dc2d7fa1a"
+          },
+          {
+            "name": "Update Branch",
+            "id": "e6aa4148-96f8-4276-8ecc-d926cefe4fc2",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"code\": \"000222\",\r\n    \"name\": \"test branch\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/branches/6008dd2d6050dd0b3403e166",
+                "host": ["{{URL}}"],
+                "path": ["api", "branches", "6008dd2d6050dd0b3403e166"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-e6aa4148-96f8-4276-8ecc-d926cefe4fc2"
+          },
+          {
+            "name": "Delete Branch",
+            "id": "fd34baf1-55c1-4f9b-aef1-b80aa54999c3",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"code\": \"000222\",\r\n    \"name\": \"test branch 2\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/branches/6008dd2d6050dd0b3403e166",
+                "host": ["{{URL}}"],
+                "path": ["api", "branches", "6008dd2d6050dd0b3403e166"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-fd34baf1-55c1-4f9b-aef1-b80aa54999c3"
+          }
+        ],
+        "id": "26b02011-74c3-4143-a97f-d80183a4b4ba",
+        "uid": "10085483-26b02011-74c3-4143-a97f-d80183a4b4ba"
+      },
+      {
+        "name": "Divisions",
+        "item": [
+          {
+            "name": "Get All Divisions",
+            "id": "41554263-5cce-4ae3-935e-ec354983124b",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/divisions",
+                "host": ["{{URL}}"],
+                "path": ["api", "divisions"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-41554263-5cce-4ae3-935e-ec354983124b"
+          },
+          {
+            "name": "Get Divisions By Branch",
+            "id": "9d643dcf-9bf4-4c23-9d32-dfd097ec283a",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/divisions/branch/6166900a1228571fe00dc50c",
+                "host": ["{{URL}}"],
+                "path": [
+                  "api",
+                  "divisions",
+                  "branch",
+                  "6166900a1228571fe00dc50c"
+                ]
+              }
+            },
+            "response": [],
+            "uid": "10085483-9d643dcf-9bf4-4c23-9d32-dfd097ec283a"
+          },
+          {
+            "name": "Get Division By Id",
+            "id": "27b98aaf-5c45-4a58-841e-6c5cc5a87f8e",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/divisions/6048311f1c276f241454750b",
+                "host": ["{{URL}}"],
+                "path": ["api", "divisions", "6048311f1c276f241454750b"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-27b98aaf-5c45-4a58-841e-6c5cc5a87f8e"
+          },
+          {
+            "name": "Create Division",
+            "id": "1d1367be-2bdb-41ab-9e39-6833a8ce36f3",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"abbreviations\": \"ADMIN\",\r\n    \"name\": \"ພະແນກ ຫ້ອງການ\",\r\n    \"branch\": \"6166900a1228571fe00dc50c\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/divisions",
+                "host": ["{{URL}}"],
+                "path": ["api", "divisions"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-1d1367be-2bdb-41ab-9e39-6833a8ce36f3"
+          },
+          {
+            "name": "Update Division",
+            "id": "f2646b7f-ec18-4959-bea4-6c5b45b2cfc5",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"abbreviations\": \"OPR\",\r\n    \"name\": \"ພະແນກ ບໍລິການ\",\r\n    \"branch\": \"6166900a1228571fe00dc50c\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/divisions/6166ac219b0ed7223cea0795",
+                "host": ["{{URL}}"],
+                "path": ["api", "divisions", "6166ac219b0ed7223cea0795"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-f2646b7f-ec18-4959-bea4-6c5b45b2cfc5"
+          },
+          {
+            "name": "Delete Division",
+            "id": "a55164a5-f0bb-4f02-b134-bd374eb22548",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"code\": \"000222\",\r\n    \"name\": \"test branch 2\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/divisions/6008dd2d6050dd0b3403e166",
+                "host": ["{{URL}}"],
+                "path": ["api", "divisions", "6008dd2d6050dd0b3403e166"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-a55164a5-f0bb-4f02-b134-bd374eb22548"
+          }
+        ],
+        "id": "075f734b-28e7-4625-91ed-95c2f1b3fc6f",
+        "uid": "10085483-075f734b-28e7-4625-91ed-95c2f1b3fc6f"
+      },
+      {
+        "name": "Levels",
+        "item": [
+          {
+            "name": "Get All Levels",
+            "id": "7e6ec890-d28e-4102-943f-c1b884acfd2d",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/levels",
+                "host": ["{{URL}}"],
+                "path": ["api", "levels"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-7e6ec890-d28e-4102-943f-c1b884acfd2d"
+          },
+          {
+            "name": "Get Level  By Id",
+            "id": "4e2f0c13-15bc-448b-9967-ab25b4e4ce19",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/levels/6167908392b7ed25ecb5fddc",
+                "host": ["{{URL}}"],
+                "path": ["api", "levels", "6167908392b7ed25ecb5fddc"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-4e2f0c13-15bc-448b-9967-ab25b4e4ce19"
+          },
+          {
+            "name": "Create Level",
+            "id": "10363f9c-2678-4f17-b6c8-6a3bd827563d",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"name\": \"ປານກາງ\",\r\n    \"controlFrequency\": \"ຕິດຕາມ - ລາຍງານຄະນະຜູ້ບໍລິຫານ ແລະ ຄະນະກຳມະການທີ່ກ່ຽວຂ້ອງ ປະຈຳເດືອນ\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/levels",
+                "host": ["{{URL}}"],
+                "path": ["api", "levels"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-10363f9c-2678-4f17-b6c8-6a3bd827563d"
+          },
+          {
+            "name": "Update Level",
+            "id": "c65f3835-4658-4994-83ed-a23abda35954",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"code\": \"000222\",\r\n    \"name\": \"test branch\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/divisions/6008dd2d6050dd0b3403e166",
+                "host": ["{{URL}}"],
+                "path": ["api", "divisions", "6008dd2d6050dd0b3403e166"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-c65f3835-4658-4994-83ed-a23abda35954"
+          },
+          {
+            "name": "Delete Level",
+            "id": "d754464f-b71e-4d27-968c-ee306749489e",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"code\": \"000222\",\r\n    \"name\": \"test branch 2\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/divisions/6008dd2d6050dd0b3403e166",
+                "host": ["{{URL}}"],
+                "path": ["api", "divisions", "6008dd2d6050dd0b3403e166"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-d754464f-b71e-4d27-968c-ee306749489e"
+          }
+        ],
+        "id": "419dffb3-2ef4-4069-ba47-b235f024dd92",
+        "uid": "10085483-419dffb3-2ef4-4069-ba47-b235f024dd92"
+      },
+      {
+        "name": "Measure",
+        "item": [
+          {
+            "name": "Get All Measures",
+            "id": "af2b7d42-8fe5-4f82-b6bd-fd52c07930ae",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/measures?page=1&limit=10",
+                "host": ["{{URL}}"],
+                "path": ["api", "measures"],
+                "query": [
+                  { "key": "page", "value": "1" },
+                  { "key": "limit", "value": "10" }
+                ]
+              }
+            },
+            "response": [],
+            "uid": "10085483-af2b7d42-8fe5-4f82-b6bd-fd52c07930ae"
+          },
+          {
+            "name": "Get Measure By Id",
+            "id": "6a256c68-17f9-434d-a917-ec2d3491925a",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/measures/6048311f1c276f241454750b",
+                "host": ["{{URL}}"],
+                "path": ["api", "measures", "6048311f1c276f241454750b"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-6a256c68-17f9-434d-a917-ec2d3491925a"
+          },
+          {
+            "name": "Get Measure By LI",
+            "id": "c44ea39e-26f2-41cb-ad23-217940bf58ae",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/measures/calculate/61678c58f49c5c1234380ba9/61678c61b487f42d14bd07a6",
+                "host": ["{{URL}}"],
+                "path": [
+                  "api",
+                  "measures",
+                  "calculate",
+                  "61678c58f49c5c1234380ba9",
+                  "61678c61b487f42d14bd07a6"
+                ]
+              }
+            },
+            "response": [],
+            "uid": "10085483-c44ea39e-26f2-41cb-ad23-217940bf58ae"
+          },
+          {
+            "name": "Create Measure",
+            "id": "b9083605-687a-4391-9729-b7b972aeb2a1",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"likelihood\": 1,\r\n    \"impact\": 5,\r\n    \"level\": \"6166c4135690dc22bcc1471f\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/measures",
+                "host": ["{{URL}}"],
+                "path": ["api", "measures"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-b9083605-687a-4391-9729-b7b972aeb2a1"
+          },
+          {
+            "name": "Update Measure",
+            "id": "ac7aa245-f95b-4760-a2e7-f108b1f3660b",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"code\": \"000222\",\r\n    \"name\": \"test branch\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/measures/6008dd2d6050dd0b3403e166",
+                "host": ["{{URL}}"],
+                "path": ["api", "measures", "6008dd2d6050dd0b3403e166"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-ac7aa245-f95b-4760-a2e7-f108b1f3660b"
+          },
+          {
+            "name": "Delete Measure",
+            "id": "78015aca-db15-464c-bb87-52577fe9b7e5",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"code\": \"000222\",\r\n    \"name\": \"test branch 2\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/measures/6008dd2d6050dd0b3403e166",
+                "host": ["{{URL}}"],
+                "path": ["api", "measures", "6008dd2d6050dd0b3403e166"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-78015aca-db15-464c-bb87-52577fe9b7e5"
+          }
+        ],
+        "id": "a315e660-e34f-4c66-970a-9fce75ec40dd",
+        "uid": "10085483-a315e660-e34f-4c66-970a-9fce75ec40dd"
+      },
+      {
+        "name": "Likelihood",
+        "item": [
+          {
+            "name": "Get All Likelihoods",
+            "id": "a05510a9-faf9-443e-b648-277a01cf5269",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/likelihoods",
+                "host": ["{{URL}}"],
+                "path": ["api", "likelihoods"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-a05510a9-faf9-443e-b648-277a01cf5269"
+          },
+          {
+            "name": "Get Likelihood By Id",
+            "id": "f710b91a-e9bd-4e25-a974-faa26a8551e1",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/likelihoods/6048311f1c276f241454750b",
+                "host": ["{{URL}}"],
+                "path": ["api", "likelihoods", "6048311f1c276f241454750b"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-f710b91a-e9bd-4e25-a974-faa26a8551e1"
+          },
+          {
+            "name": "Create Likelihood",
+            "id": "b494a0df-14a4-4e1b-8d5e-dc5c0613c671",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"likelihood\": 1,\r\n    \"impact\": 5,\r\n    \"level\": \"6166c4135690dc22bcc1471f\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/likelihoods",
+                "host": ["{{URL}}"],
+                "path": ["api", "likelihoods"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-b494a0df-14a4-4e1b-8d5e-dc5c0613c671"
+          },
+          {
+            "name": "Update Likelihood",
+            "id": "0bccd342-de78-408d-a31e-48d6dc60670d",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"code\": \"000222\",\r\n    \"name\": \"test branch\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/likelihoods/6008dd2d6050dd0b3403e166",
+                "host": ["{{URL}}"],
+                "path": ["api", "likelihoods", "6008dd2d6050dd0b3403e166"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-0bccd342-de78-408d-a31e-48d6dc60670d"
+          },
+          {
+            "name": "Delete Likelihood",
+            "id": "c396b4e8-7a28-4c5e-b77b-5b0458da0b9c",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"code\": \"000222\",\r\n    \"name\": \"test branch 2\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/likelihoods/6008dd2d6050dd0b3403e166",
+                "host": ["{{URL}}"],
+                "path": ["api", "likelihoods", "6008dd2d6050dd0b3403e166"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-c396b4e8-7a28-4c5e-b77b-5b0458da0b9c"
+          }
+        ],
+        "id": "d5c7c538-d278-47f3-94ca-1dbd5961a498",
+        "uid": "10085483-d5c7c538-d278-47f3-94ca-1dbd5961a498"
+      },
+      {
+        "name": "Impact",
+        "item": [
+          {
+            "name": "Get All Impacts",
+            "id": "56c4b9db-e0ad-45b7-a0d3-289e6a26c6f9",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/impacts",
+                "host": ["{{URL}}"],
+                "path": ["api", "impacts"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-56c4b9db-e0ad-45b7-a0d3-289e6a26c6f9"
+          },
+          {
+            "name": "Get Impact By Id",
+            "id": "f94e0d16-f1b8-4eff-94c2-ecb5c8869e77",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/measures/6048311f1c276f241454750b",
+                "host": ["{{URL}}"],
+                "path": ["api", "measures", "6048311f1c276f241454750b"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-f94e0d16-f1b8-4eff-94c2-ecb5c8869e77"
+          },
+          {
+            "name": "Create Impact",
+            "id": "75760dce-1403-47f8-99ae-0e875d345fba",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"likelihood\": 1,\r\n    \"impact\": 5,\r\n    \"level\": \"6166c4135690dc22bcc1471f\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/measures",
+                "host": ["{{URL}}"],
+                "path": ["api", "measures"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-75760dce-1403-47f8-99ae-0e875d345fba"
+          },
+          {
+            "name": "Update Impact",
+            "id": "e18201b4-c481-4055-9dbd-2b05f0f869a4",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"code\": \"000222\",\r\n    \"name\": \"test branch\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/measures/6008dd2d6050dd0b3403e166",
+                "host": ["{{URL}}"],
+                "path": ["api", "measures", "6008dd2d6050dd0b3403e166"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-e18201b4-c481-4055-9dbd-2b05f0f869a4"
+          },
+          {
+            "name": "Delete Impact",
+            "id": "fa1816fb-87ac-4a60-8a04-98e123825e24",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"code\": \"000222\",\r\n    \"name\": \"test branch 2\"\r\n}"
+              },
+              "url": {
+                "raw": "{{URL}}/api/measures/6008dd2d6050dd0b3403e166",
+                "host": ["{{URL}}"],
+                "path": ["api", "measures", "6008dd2d6050dd0b3403e166"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-fa1816fb-87ac-4a60-8a04-98e123825e24"
+          }
+        ],
+        "id": "989fb722-5b94-4677-b2e5-ccde4e76eb21",
+        "uid": "10085483-989fb722-5b94-4677-b2e5-ccde4e76eb21"
+      },
+      {
+        "name": "Register",
+        "item": [
+          {
+            "name": "Add Register",
+            "id": "53580134-9566-4abb-87f5-fe2216172a8e",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": " {\r\n    \"id\": \"04IT10142021\",\r\n    \"year\": 2021,\r\n    \"objective\": \"ປ້ອງກັນລະບົບ IT ພາຍໃນ ທສກ\",\r\n    \"identity\": \"ເກີດຂໍ້ຜິດຜາດກັບຂໍ້ມູນ ເນື່ອງຈາກສັນຍານຂາດ\",\r\n    \"likelihood\": \"61678c58f49c5c1234380ba9\",\r\n    \"impact\": \"61678c61b487f42d14bd07a6\",\r\n    \"level\": \"6166c4135690dc22bcc1471e\",\r\n    \"control\": [\r\n      \"ປັບປຸງສາຍສັນຍານ\"\r\n    ],\r\n    \"additional\": [],\r\n    \"expected\": \"10/12/2021\"\r\n  }"
+              },
+              "url": {
+                "raw": "{{URL}}/api/register",
+                "host": ["{{URL}}"],
+                "path": ["api", "register"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-53580134-9566-4abb-87f5-fe2216172a8e"
+          },
+          {
+            "name": "Get Register By Division",
+            "id": "9657ede4-6765-4db1-a996-21f7b46a0dfa",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/register/user/2021/",
+                "host": ["{{URL}}"],
+                "path": ["api", "register", "user", "2021", ""]
+              }
+            },
+            "response": [],
+            "uid": "10085483-9657ede4-6765-4db1-a996-21f7b46a0dfa"
+          },
+          {
+            "name": "Get Register By User",
+            "id": "854b4e12-ce46-4690-bf48-ac79458fa59b",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/register/2021/division/6166ac219b0ed7223cea0795",
+                "host": ["{{URL}}"],
+                "path": [
+                  "api",
+                  "register",
+                  "2021",
+                  "division",
+                  "6166ac219b0ed7223cea0795"
+                ]
+              }
+            },
+            "response": [],
+            "uid": "10085483-854b4e12-ce46-4690-bf48-ac79458fa59b"
+          },
+          {
+            "name": "Get Gen Id",
+            "id": "d9b2dec4-404c-48f2-9af0-260b98e5e97e",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/register/generateId/2021",
+                "host": ["{{URL}}"],
+                "path": ["api", "register", "generateId", "2021"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-d9b2dec4-404c-48f2-9af0-260b98e5e97e"
+          },
+          {
+            "name": "Update Register",
+            "id": "c18441a2-697d-446f-b9af-7bc63b102ed4",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "JSON Type",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": " {\r\n    \"id\": \"02IT10142021\",\r\n    \"year\": 2021,\r\n    \"objective\": \"ປ້ອງກັນລະບົບ IT ພາຍໃນ ທສກ\",\r\n    \"identity\": \"ເກີດຂໍ້ຜິດຜາດກັບຂໍ້ມູນ ເນື່ອງຈາກສັນຍານຂາດ\",\r\n    \"likelihood\": \"61678c58f49c5c1234380ba9\",\r\n    \"impact\": \"61678c61b487f42d14bd07a6\",\r\n    \"level\": \"6166c4135690dc22bcc1471e\",\r\n    \"control\": [\r\n      \"ປັບປຸງສາຍສັນຍານ\"\r\n    ],\r\n    \"additional\": [\r\n      \"N/A\"\r\n    ],\r\n    \"expected\": \"10/12/2021\"\r\n  }"
+              },
+              "url": {
+                "raw": "{{URL}}/api/register/6167d638e2e4dc1648e558e5",
+                "host": ["{{URL}}"],
+                "path": ["api", "register", "6167d638e2e4dc1648e558e5"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-c18441a2-697d-446f-b9af-7bc63b102ed4"
+          }
+        ],
+        "id": "64c4c364-d625-4236-9d32-a2e3d99a40b4",
+        "uid": "10085483-64c4c364-d625-4236-9d32-a2e3d99a40b4"
+      },
+      {
+        "name": "Years",
+        "item": [
+          {
+            "name": "Get Years",
+            "id": "f71276c8-502f-4009-882a-ccaa40e6b8f2",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/years",
+                "host": ["{{URL}}"],
+                "path": ["api", "years"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-f71276c8-502f-4009-882a-ccaa40e6b8f2"
+          }
+        ],
+        "id": "f431f25d-5c61-4201-bc9f-8c81f11c174e",
+        "uid": "10085483-f431f25d-5c61-4201-bc9f-8c81f11c174e"
+      },
+      {
+        "name": "Report",
+        "item": [
+          {
+            "name": "Get Report By User",
+            "id": "72b5d727-0313-413a-92d5-51bf7ff5fea4",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/reports/user/2021",
+                "host": ["{{URL}}"],
+                "path": ["api", "reports", "user", "2021"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-72b5d727-0313-413a-92d5-51bf7ff5fea4"
+          },
+          {
+            "name": "Get 1st Line Report",
+            "id": "4677d17c-56b4-4b88-83ce-a688330f3870",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/reports/user/2021",
+                "host": ["{{URL}}"],
+                "path": ["api", "reports", "user", "2021"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-4677d17c-56b4-4b88-83ce-a688330f3870"
+          },
+          {
+            "name": "Get 2nd Line Report",
+            "id": "858dc76c-1422-4767-b68c-ce9072f0aff9",
+            "protocolProfileBehavior": { "disableBodyPruning": true },
+            "request": {
+              "auth": {
+                "type": "bearer",
+                "bearer": [
+                  { "key": "token", "value": "{{TOKEN}}", "type": "string" }
+                ]
+              },
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{URL}}/api/reports/2nd/2021",
+                "host": ["{{URL}}"],
+                "path": ["api", "reports", "2nd", "2021"]
+              }
+            },
+            "response": [],
+            "uid": "10085483-858dc76c-1422-4767-b68c-ce9072f0aff9"
+          }
+        ],
+        "id": "211d7692-e0a7-4544-b9ff-df4ff286793f",
+        "uid": "10085483-211d7692-e0a7-4544-b9ff-df4ff286793f"
+      }
+    ]
+  }
+}
